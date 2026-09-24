@@ -1,0 +1,22 @@
+# --- CORE API & WEB FRAMEWORK ---
+fastapi
+uvicorn[standard]
+python-dotenv
+requests
+numpy
+# --- GEMINI EMBEDDINGS ---
+google-generativeai
+langchain-google-genai
+sentence-transformers
+# --- VECTOR DB & RETRIEVAL ---
+qdrant-client
+
+unstructured
+python-pptx
+python-docx
+pypdf
+beautifulsoup4
+pdfplumber
+# --- OBSERVABILITY & DISTRIBUTED TRACING ---
+logfire[fastapi,requests]
+loguru

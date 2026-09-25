@@ -164,3 +164,9 @@ if __name__ == "__main__":
 
     run_universal_ingestion(target_dir, explicit_type, wipe_requested)
     logfire.info("Ingestion job completed")
+
+    # Vector search is fast at finding potentially relevant chunks; a reranker
+    # is better at deciding which of those chunks are actually relevant.
+    # The reranker examines the query + each candidate chunk together and produces a new relevance score
+    # pay much more attention to the relationship between the specific query and the specific chunk.
+    # it's much more computationally expensive.

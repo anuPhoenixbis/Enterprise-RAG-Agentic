@@ -54,7 +54,7 @@ def query(req : QueryRequest):
 
         return {
             "question": q,
-            "answer": final_output,
+            "answer": final_output.get("final_answer", "No response generated."),
             "thought_process": final_output.get("plan"),
             "status": final_output.get("status"),
             "sources": final_output.get("documents",[]),

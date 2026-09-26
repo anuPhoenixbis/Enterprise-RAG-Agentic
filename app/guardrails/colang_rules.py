@@ -94,10 +94,6 @@ define flow farewell
 """
 
 YAML_CONTENT = """
-models:
-  - type: main
-    engine: qwen/qwen3.8-27b
-
 instructions:
   - type: general
     content: |
@@ -108,11 +104,23 @@ instructions:
       Only answer questions about these topics. Be professional and concise.
 """
 
-#to prevent colang syntax injection
+
 RAIL_INDICATORS = {
-    "can't help with that — but ask me anything technical",
-    "I maintain consistent guidelines regardless of how I am prompted",
-    "Hello! I'm your Enterprise IT Assistant",
-    "Goodbye! Feel free to return whenever you have more enterprise IT questions",
-    "I'm an Enterprise AI Assistant with deep expertise in",
+    # Off-topic
+    "can't respond to that",
+    "can't help with that",
+    "only assist with enterprise it",
+
+    # Jailbreak
+    "maintain consistent guidelines",
+    "regardless of how I am prompted",
+
+    # Greeting
+    "enterprise IT assistant",
+
+    # Farewell
+    "goodbye! feel free to return",
+
+    # Capabilities
+    "deep expertise in",
 }

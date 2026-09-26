@@ -1,4 +1,5 @@
 import logfire
+from app.utils.guardrail_response import clean_llm_response, normalize_text
 from langchain_groq import ChatGroq
 from nemoguardrails import RailsConfig, LLMRails
 
@@ -25,7 +26,7 @@ def initialize_rails() -> None:
         yaml_content=YAML_CONTENT,
     )
 
-    _rails = LLMRails(config, llm=guard_llm) #pass the configs to the guarded llm
+    _rails = LLMRails(config=config, llm=guard_llm) #pass the configs to the guarded llm
     logfire.info("Nemo Guardrails initialized: openai/gpt-oss-20b")
 
 def guard(message: str) -> tuple[bool, str | None]:
@@ -42,13 +43,32 @@ def guard(message: str) -> tuple[bool, str | None]:
         result = _rails.generate(messages=[{"role": "user", "content": message}])
 
         #nemo results
-        content = result.get("content", "") if isinstance(result, dict) else str(result)
+        content_raw = result.get("content", "") if isinstance(result, dict) else str(result)
 
-        fired = any(indicator in content for indicator in RAIL_INDICATORS) #get any indicator in the content given
+
+        content = clean_llm_response(content_raw)
+
+        normalized_content = normalize_text(content)
+        fired = any(
+            normalize_text(indicator) in normalized_content
+            for indicator in RAIL_INDICATORS
+        ) #get any indicator in the content given
+
+        logfire.info(
+            "Guardrail result",
+            raw_response=content_raw,
+            cleaned_response=content,
+            fired=fired,
+        )
 
         if fired:
-            logfire.info(f"Guardrails fired | query={message[:80]}")
+            logfire.info(
+                "Guardrail fired",
+                message=message,
+                response=content,
+            )
             return True, content
 
         logfire.info("Guardrails passed")
         return False, None
+

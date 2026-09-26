@@ -34,3 +34,13 @@ langchain-google-vertexai
 #gateway
 portkey-ai
 langchain-openai
+
+#evals
+ragas
+deepeval
+langfuse
+pandas
+openai
+
+#llm
+langchain-groq

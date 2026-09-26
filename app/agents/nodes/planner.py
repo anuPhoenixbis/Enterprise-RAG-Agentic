@@ -1,13 +1,14 @@
 from app.agents.state import AgentState
-from app.config import settings
-from langchain_groq import ChatGroq
+from app.gateway.client import get_langchain_llm
 import logfire
 
-#direct groq call -> llm gateway (portkey routing//fallback/calls)
-llm = ChatGroq(
-    api_key=settings.GROQ_API_KEY,
-    model = settings.GROQ_MODEL,
-)
+# #direct groq call -> llm gateway (portkey routing//fallback/calls)
+# llm = ChatGroq(
+#     api_key=settings.GROQ_API_KEY,
+#     model = settings.GROQ_MODEL,
+# )
+
+llm = get_langchain_llm(feature="planner")
 
 def planner_node(state: AgentState):
     # to determine if the search is needed or not based on the entire convo

@@ -25,3 +25,12 @@ flashrank
 
 #ui
 streamlit
+
+#guardrails
+nemoguardrails
+langchain-nvidia-ai-endpoints
+langchain-google-vertexai
+
+#gateway
+portkey-ai
+langchain-openai

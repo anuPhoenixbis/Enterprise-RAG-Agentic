@@ -41,6 +41,7 @@ deepeval
 langfuse
 pandas
 openai
+langchain-google-vertexai
 
 #llm
 langchain-groq

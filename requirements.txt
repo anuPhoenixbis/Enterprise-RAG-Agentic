@@ -45,3 +45,4 @@ langchain-google-vertexai
 
 #llm
 langchain-groq
+langchain-community==0.3.31

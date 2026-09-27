@@ -4,45 +4,46 @@ uvicorn[standard]
 python-dotenv
 requests
 numpy
+
 # --- GEMINI EMBEDDINGS ---
 google-generativeai
 langchain-google-genai
 langgraph
 sentence-transformers
+
 # --- VECTOR DB & RETRIEVAL ---
 qdrant-client
-
 unstructured
 python-pptx
 python-docx
 pypdf
 beautifulsoup4
 pdfplumber
+
 # --- OBSERVABILITY & DISTRIBUTED TRACING ---
 logfire[fastapi,requests]
 loguru
 flashrank
 
-#ui
+# --- UI ---
 streamlit
 
-#guardrails
+# --- GUARDRAILS ---
 nemoguardrails
 langchain-nvidia-ai-endpoints
 langchain-google-vertexai
 
-#gateway
+# --- GATEWAY ---
 portkey-ai
 langchain-openai
 
-#evals
-ragas
+# --- EVALUATION ---
+ragas==0.4.3
+langchain-community==0.3.31
 deepeval
 langfuse
 pandas
 openai
-langchain-google-vertexai
 
-#llm
+# --- LLM ---
 langchain-groq
-langchain-community==0.3.31
